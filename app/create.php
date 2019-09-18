@@ -1,12 +1,9 @@
 <?php
 require_once 'Models/User.php';
 
-$title = 'Update User';
+$title = 'New User';
 require_once 'Layouts/header.php';
 
-$user = new User();
-// get user by id
-$user = $user->byId($_REQUEST['id']);
 ?>
 
 <!-- hero page -->
@@ -14,10 +11,10 @@ $user = $user->byId($_REQUEST['id']);
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        Update User <?= $user->name ?>
+        New User
       </h1>
       <h2 class="subtitle">
-        Perbarui data user.
+        Form tambah user baru.
       </h2>
     </div>
   </div>
@@ -26,14 +23,12 @@ $user = $user->byId($_REQUEST['id']);
 <!-- content -->
 <section class="section">
     <div class="container">
-        <form action="actions.php" method="post" style="width:50%">
-            <input type="hidden" name="type" value="update">
-            <input type="hidden" name="id" value="<?= $user->id ?>">
+        <form action="http://localhost/myPractices/nativeMVC/public/action/insert" method="post" style="width:50%">
 
             <div class="field">
                 <label class="label">Name</label>
                 <div class="control">
-                    <input class="input" name="name" type="text" value="<?= $user->name ?>">
+                    <input class="input" name="name" type="text" placeholder="e.g Alex Smith">
                 </div>
             </div>
 
@@ -41,11 +36,11 @@ $user = $user->byId($_REQUEST['id']);
                 <label class="label">Gender?</label>
                 <div class="control">
                     <label class="radio">
-                    <input type="radio" name="gender"  value="M" <?php echo $user->gender === 'M' ? 'checked' : ''; ?>>
+                    <input type="radio" name="gender"  value="M" checked>
                     Male
                     </label>
                     <label class="radio">
-                    <input type="radio" name="gender" value="F" <?php echo $user->gender === 'F' ? 'checked' : ''; ?>>
+                    <input type="radio" name="gender" value="F">
                     Female
                     </label>
                 </div>

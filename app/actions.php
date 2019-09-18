@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once "Models\User.php";
+require_once 'Models\User.php';
+
+$baseUrl = 'http://localhost/myPractices/nativeMVC/public';
 
 $user = new User ();
-
-$action = $_REQUEST['type'];
 
 switch ($action) {
     case 'insert':
@@ -18,19 +18,19 @@ switch ($action) {
             $_SESSION['notif']['type'] = 'is-success';
             $_SESSION['notif']['message'] = $result . ' data berhasil di tambahkan.';
             
-            header('Location: index.php');
+            header("Location: {$baseUrl}/");
             break;
         }
         
         $_SESSION['notif']['type'] = 'is-danger';
         $_SESSION['notif']['message'] = 'data gagal di tambahkan.';
 
-        header('Location: create.php');    
+        header("Location: {$baseUrl}/create");    
         break;
     
     case 'update':
         // update user by id
-        $result = $user->updateById($_REQUEST['id'], [
+        $result = $user->updateById($id, [
             'name' => $_REQUEST['name'],
             'gender' => $_REQUEST['gender']
         ]);
@@ -39,23 +39,23 @@ switch ($action) {
             $_SESSION['notif']['type'] = 'is-success';
             $_SESSION['notif']['message'] = $result . ' data berhasil di perbarui.';
 
-            header('Location: index.php');
+            header("Location: {$baseUrl}/");
             break;
         }
 
         $_SESSION['notif']['type'] = 'is-danger';
         $_SESSION['notif']['message'] = 'data gagal di perbarui.';
 
-        header('Location: create.php'); 
+        header("Location: {$baseUrl}/update/{$id}"); 
         break;
 
     case 'delete':
         // delete user by id
-        $user->deleteById($_REQUEST['id']);
+        $user->deleteById($id);
 
         $_SESSION['notif']['type'] = 'is-success';
         $_SESSION['notif']['message'] = 'data berhasil di hapus.';
 
-        header('Location: index.php');
+        header("Location: {$baseUrl}/");
         break;
 }

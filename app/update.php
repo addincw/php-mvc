@@ -1,9 +1,12 @@
 <?php
 require_once 'Models/User.php';
 
-$title = 'New User';
+$title = 'Update User';
 require_once 'Layouts/header.php';
 
+$user = new User();
+// get user by id
+$user = $user->byId($id);
 ?>
 
 <!-- hero page -->
@@ -11,10 +14,10 @@ require_once 'Layouts/header.php';
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
-        New User
+        Update User <?= $user->name ?>
       </h1>
       <h2 class="subtitle">
-        Form tambah user baru.
+        Perbarui data user.
       </h2>
     </div>
   </div>
@@ -23,13 +26,11 @@ require_once 'Layouts/header.php';
 <!-- content -->
 <section class="section">
     <div class="container">
-        <form action="actions.php" method="post" style="width:50%">
-            <input type="hidden" name="type" value="insert">
-
+        <form action="http://localhost/myPractices/nativeMVC/public/action/update/<?= $user->id ?>" method="post" style="width:50%">
             <div class="field">
                 <label class="label">Name</label>
                 <div class="control">
-                    <input class="input" name="name" type="text" placeholder="e.g Alex Smith">
+                    <input class="input" name="name" type="text" value="<?= $user->name ?>">
                 </div>
             </div>
 
@@ -37,11 +38,11 @@ require_once 'Layouts/header.php';
                 <label class="label">Gender?</label>
                 <div class="control">
                     <label class="radio">
-                    <input type="radio" name="gender"  value="M" checked>
+                    <input type="radio" name="gender"  value="M" <?php echo $user->gender === 'M' ? 'checked' : ''; ?>>
                     Male
                     </label>
                     <label class="radio">
-                    <input type="radio" name="gender" value="F">
+                    <input type="radio" name="gender" value="F" <?php echo $user->gender === 'F' ? 'checked' : ''; ?>>
                     Female
                     </label>
                 </div>

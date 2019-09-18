@@ -50,7 +50,7 @@ endif;
 <!-- content -->
 <section class="section">
     <div class="container">
-        <a href="create.php" class="button is-primary" style="margin-bottom: 15px;">
+        <a href="<?= $_SERVER['REQUEST_URI'] . 'create' ?>" class="button is-primary" style="margin-bottom: 15px;">
             <span class="icon is-small" style="margin-right: 5px;">
                 <i class="fas fa-plus"></i>
             </span>
@@ -75,12 +75,12 @@ endif;
                     <td><?= $user->gender ?></td>
                     <td>
                         <p class="buttons">
-                            <a class="button is-small is-info" href="update.php?id=<?= $user->id ?>">
+                            <a class="button is-small is-info" href="<?= $_SERVER['REQUEST_URI'] . 'update/' . $user->id ?>">
                                 <span class="icon is-small">
                                 <i class="fas fa-edit"></i>
                                 </span>
                             </a>
-                            <a class="button is-small is-danger" href="actions.php?type=delete&id=<?= $user->id ?>">
+                            <a class="button is-small is-danger" href="<?= $_SERVER['REQUEST_URI'] . 'action/delete/' . $user->id ?>">
                                 <span class="icon is-small">
                                 <i class="fas fa-trash"></i>
                                 </span>
